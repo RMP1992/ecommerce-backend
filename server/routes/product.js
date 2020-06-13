@@ -3,7 +3,7 @@ const {userById} = require('../controllers/user')
 
 const router = express.Router()
 
-const {createProduct, productById, read, deleteProduct, updateProduct, list, listRelated, listCategories, listBySearch, photo} = require('../controllers/product')
+const {createProduct, productById, read, deleteProduct, updateProduct, list, listRelated, listCategories, listBySearch, photo, listSearch} = require('../controllers/product')
 const {requireSignin, isAdmin, isAuth} = require('../controllers/auth')
 
 router.get('/product/:productId', read)
@@ -15,6 +15,8 @@ router.delete('/product/:productId/:userId', requireSignin, isAdmin, isAuth, del
 router.put('/product/:productId/:userId', requireSignin, isAdmin, isAuth, updateProduct)
 
 router.get('/products', list)
+
+router.get('/products/search', listSearch)
 
 router.get('/products/related/:productId', listRelated)
 
